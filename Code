@@ -1,0 +1,25 @@
+int redLed = 12;
+int buzzer = 10;
+int sensorValue = 0;
+void setup() {
+  pinMode(redLed, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+  pinMode(A5, INPUT);
+  Serial.begin(9600);
+}
+void loop() {
+  sensorValue = analogRead(A5);
+  Serial.print(" Pin A5: ");
+  Serial.println(sensorValue, DEC);
+  if (sensorValue > 200)
+  {
+    digitalWrite(redLed, HIGH);
+    tone(buzzer, 1000, 200);
+  }
+  else
+  {
+    digitalWrite(redLed, LOW);
+    noTone(buzzer);
+  }
+  delay(100);
+}
